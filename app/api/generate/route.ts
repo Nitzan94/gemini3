@@ -36,8 +36,9 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    // Type assertion needed for Gemini SDK flexibility
     const result = await generativeModel.generateContent({
-      contents: [{ role: 'user', parts: contents }],
+      contents: [{ role: 'user', parts: contents }] as any,
       generationConfig: {
         responseModalities: ['TEXT', 'IMAGE'],
         ...(model === 'gemini-3-pro-image-preview' && {
