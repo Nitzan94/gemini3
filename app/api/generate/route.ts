@@ -36,9 +36,9 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Type assertion needed for Gemini SDK flexibility
+    // Type assertion needed for Gemini SDK flexibility - SDK types incomplete
     const result = await generativeModel.generateContent({
-      contents: [{ role: 'user', parts: contents }] as any,
+      contents: [{ role: 'user', parts: contents }],
       generationConfig: {
         responseModalities: ['TEXT', 'IMAGE'],
         ...(model === 'gemini-3-pro-image-preview' && {
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
           },
         }),
       },
-    });
+    } as any);
 
     const response = result.response;
     const candidates = response.candidates;
