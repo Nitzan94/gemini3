@@ -24,15 +24,7 @@ export async function POST(request: NextRequest) {
       model,
     });
 
-    interface ContentPart {
-      text?: string;
-      inlineData?: {
-        mimeType: string;
-        data: string;
-      };
-    }
-
-    const contents: ContentPart[] = [{ text: prompt }];
+    const contents = [{ text: prompt }] as Array<{ text?: string; inlineData?: { mimeType: string; data: string } }>;
 
     if (editImage) {
       const base64Data = editImage.split(',')[1];
