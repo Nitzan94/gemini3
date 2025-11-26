@@ -8,7 +8,7 @@ const genAI = new GoogleGenerativeAI(process.env['GEMINI_API_KEY'] || '');
 
 export async function POST(request: NextRequest) {
   try {
-    const { prompt, model = 'gemini-2.0-flash-exp', aspectRatio = '1:1', imageSize = '1K', editImage, apiKey } = await request.json();
+    const { prompt, model = 'gemini-2.5-flash-image', aspectRatio = '1:1', imageSize = '1K', editImage, apiKey } = await request.json();
 
     if (!prompt) {
       return NextResponse.json({ error: 'Prompt required' }, { status: 400 });
